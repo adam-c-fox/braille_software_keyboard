@@ -94,12 +94,11 @@ prettyListChar (x:xs) = (singleton x) <> (prettyListChar xs)
 
 render :: T.Render State _ _
 render dispatch _ state _ =
-  [ R.h1' [ R.text "Lesson 2 - Actions" ]
-  , R.p' [ R.text "The state is: "
-         , R.text (show (prettyListChar (brailleToString (fst state))))
+  [ R.h1' [ R.text "Braille Keyboard" ]
+  , R.p' [ R.text "Output: "
+         , R.text ((prettyListChar (brailleToString (fst state))))
          ]
-  , R.textarea' [R.text "cat_succs"]
-  , R.p [ RP.className "btn-group" ] 
+  , R.p [ RP.className "btn-group" ]
         [ R.button [ RP.className "b1"
                    , RP.onClick \_ -> dispatch (Increment 1)
                    ]
@@ -133,7 +132,7 @@ render dispatch _ state _ =
                    ]
                    [ R.text "next" ]
         ]
-
+  ]
 -- The performAction function is responsible for responding to an action
 -- by returning a coroutine which emits state updates.
 --
