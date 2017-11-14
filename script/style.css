@@ -1,0 +1,23 @@
+button {
+	width: 50%;
+	height: 23%;
+	position: relative;
+	font-size: 300%;
+}
+
+textarea{
+	width: 100%;
+	font-size: 150%;
+}
+
+#b1 {float: left;}
+#b2 {float: right;}
+
+#b3 {float: left;}
+#b4 {float: right;}
+
+#b5 {float: left;}
+#b6 {float: right;}
+
+#back {float: left;}
+#next {float: right;}
