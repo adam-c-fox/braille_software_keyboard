@@ -2,8 +2,9 @@ module Main where
 
 import Prelude
 
+import Data.String
 import Data.Tuple
-import Data.List
+import Data.List hiding (singleton)
 import React as R
 import React.DOM as R
 import React.DOM.Props as RP
@@ -81,6 +82,9 @@ brailleLetter2String (Letter X X O X X X) = 'y'
 brailleLetter2String (Letter X O O X X X) = 'z'
 brailleLetter2String otherwise = '\t'
 
+prettyListChar :: List Char -> String
+prettyListChar Nil = ""
+prettyListChar (x:xs) = (singleton x) <> (prettyListChar xs)
 
 -- The first argument to the render function is a callback which
 -- can be used to invoke actions.
@@ -92,7 +96,7 @@ render :: T.Render State _ _
 render dispatch _ state _ =
   [ R.h1' [ R.text "Lesson 2 - Actions" ]
   , R.p' [ R.text "The state is: "
-         , R.text (show ((brailleToString (fst state))))
+         , R.text (show (prettyListChar (brailleToString (fst state))))
          ]
   , R.p [ RP.className "btn-group" ]
         [ R.button [ RP.className "btn btn-success"
@@ -168,7 +172,7 @@ removeBraille Nil = Nil
 removeBraille xs = reverse (f (reverse xs)) where
     f :: List Braille -> List Braille
     f Nil = Nil
-    f (x:xs) = xs
+    f (y:ys) = ys
 
 performAction :: T.PerformAction _ State _ Action
 performAction (Increment n) _ _ = void $ T.modifyState $ \(Tuple state1 state2) -> Tuple (state1) (adjustBraille n state2)
