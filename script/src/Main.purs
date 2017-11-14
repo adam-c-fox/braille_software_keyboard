@@ -98,52 +98,41 @@ render dispatch _ state _ =
   , R.p' [ R.text "The state is: "
          , R.text (show (prettyListChar (brailleToString (fst state))))
          ]
-  , R.p [ RP.className "btn-group" ]
-        [ R.button [ RP.className "btn btn-success"
+  , R.textarea' [R.text "cat_succs"]
+  , R.p [ RP.className "btn-group" ] 
+        [ R.button [ RP.className "b1"
                    , RP.onClick \_ -> dispatch (Increment 1)
                    ]
-                   [ R.text "Increment" ]
-        , R.button [ RP.className "btn btn-danger"
+                   [ R.text "1" ]
+        , R.button [ RP.className "b2"
                    , RP.onClick \_ -> dispatch (Increment 2)
                    ]
-                   [ R.text "Decrement" ]
-        , R.button [ RP.className "btn btn-danger"
+                   [ R.text "2" ]
+        , R.button [ RP.className "b3"
                    , RP.onClick \_ -> dispatch (Increment 3)
                    ]
-                   [ R.text "Decrement" ]
-        ]
-  , R.p [ RP.className "btn-group" ]
-        [ R.button [ RP.className "btn btn-success"
+                   [ R.text "3" ]
+        , R.button [ RP.className "b4"
                    , RP.onClick \_ -> dispatch (Increment 4)
                    ]
-                   [ R.text "Increment" ]
-        , R.button [ RP.className "btn btn-danger"
+                   [ R.text "4" ]
+        , R.button [ RP.className "b5"
                    , RP.onClick \_ -> dispatch (Increment 5)
                    ]
-                   [ R.text "Decrement" ]
-        , R.button [ RP.className "btn btn-danger"
+                   [ R.text "5" ]
+        , R.button [ RP.className "b6"
                    , RP.onClick \_ -> dispatch (Increment 6)
                    ]
-                   [ R.text "Decrement" ]
-        ]
-  , R.p [ RP.className "btn-group" ]
-        [ R.button [ RP.className "btn btn-danger"
+                   [ R.text "6" ]
+        , R.button [ RP.className "back"
                    , RP.onClick \_ -> dispatch (Decrement False)
                    ]
-                   [ R.text "Decrement" ]
-        , R.button [ RP.className "btn btn-danger"
+                   [ R.text "back" ]
+        , R.button [ RP.className "next"
                    , RP.onClick \_ -> dispatch (Decrement True)
                    ]
-                   [ R.text "Decrement" ]
+                   [ R.text "next" ]
         ]
-  , R.p'  [ R.text "Go to "
-          , R.a [ RP.href "?gist=0e1b6ed00421ae4ae7b17a919c267199&backend=thermite"
-                , RP.target "_top"
-                ]
-                [ R.text "Lesson 3" ]
-          , R.text "."
-          ]
-  ]
 
 -- The performAction function is responsible for responding to an action
 -- by returning a coroutine which emits state updates.
