@@ -8,8 +8,7 @@ import Data.List hiding (singleton)
 import React as R
 import React.DOM as R
 import React.DOM.Props as RP
-import Thermite hiding (defaultMain) as T
-import Thermite.Try as T
+import Thermite as T
 
 type State = Tuple (List Braille) (Braille)
 
@@ -99,7 +98,8 @@ render dispatch _ state _ =
          , R.text ((prettyListChar (brailleToString (fst state))))
          ]
   , R.p [ RP.className "btn-group" ]
-        [ R.button [ RP.className "b1"
+        [ R.p' [
+          R.button [ RP.className "b1"
                    , RP.onClick \_ -> dispatch (Increment 1)
                    ]
                    [ R.text "1" ]
@@ -107,7 +107,9 @@ render dispatch _ state _ =
                    , RP.onClick \_ -> dispatch (Increment 2)
                    ]
                    [ R.text "2" ]
-        , R.button [ RP.className "b3"
+                ]
+        , R.p' [        
+          R.button [ RP.className "b3"
                    , RP.onClick \_ -> dispatch (Increment 3)
                    ]
                    [ R.text "3" ]
@@ -115,7 +117,10 @@ render dispatch _ state _ =
                    , RP.onClick \_ -> dispatch (Increment 4)
                    ]
                    [ R.text "4" ]
-        , R.button [ RP.className "b5"
+                ]
+          
+        , R.p' [  
+          R.button [ RP.className "b5"
                    , RP.onClick \_ -> dispatch (Increment 5)
                    ]
                    [ R.text "5" ]
@@ -123,7 +128,10 @@ render dispatch _ state _ =
                    , RP.onClick \_ -> dispatch (Increment 6)
                    ]
                    [ R.text "6" ]
-        , R.button [ RP.className "back"
+                ]
+                
+        , R.p' [  
+        R.button [ RP.className "back"
                    , RP.onClick \_ -> dispatch (Decrement False)
                    ]
                    [ R.text "back" ]
@@ -133,6 +141,9 @@ render dispatch _ state _ =
                    [ R.text "next" ]
         ]
   ]
+]
+
+
 -- The performAction function is responsible for responding to an action
 -- by returning a coroutine which emits state updates.
 --
@@ -170,4 +181,4 @@ performAction (Decrement False) _ _ = void $ T.modifyState $ \(Tuple state1 stat
 spec :: T.Spec _ State _ Action
 spec = T.simpleSpec performAction render
 
-main = T.defaultMain spec initialState
+main = T.defaultMain spec initialState unit
